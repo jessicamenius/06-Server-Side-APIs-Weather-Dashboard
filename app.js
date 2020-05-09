@@ -7,6 +7,8 @@ $(document).ready(function () {
   $("#submitBtn").on("click", function (e) {
     e.preventDefault();
     inputText = $("#inputText").val();
+    $("#inputText").val("");
+    console.log(inputText);
 
     $.ajax({
       type: "GET",
@@ -47,8 +49,10 @@ $(document).ready(function () {
       });
     });
 
+    $("fiveDay").append(``);
+
     function renderCity() {
-      var city = JSON.parse(localStorage.getItem("cityList"));
+      var city = JSON.parse(localStorage.getItem("cityList")) || [];
       if (city != null) {
         $("inputText").val(city.cityName);
       }
