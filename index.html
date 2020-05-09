@@ -15,7 +15,7 @@
   <body>
     <header class="text-center bg-dark text-light round-0">
       <h1>Weather Dashboard</h1>
-      <h3 id="currentDate" class="lead"></h3>
+      <h3 id="currentDate"></h3>
     </header>
 
     <div class="container">
@@ -25,13 +25,7 @@
             <br />
             <h5 class="city-header">Search for a City:</h5>
             <div class="input-group mb-3">
-              <input
-                type="text"
-                class="form-control"
-                aria-label="Recipient's username"
-                aria-describedby="button-addon2"
-                id="inputText"
-              />
+              <input type="text" class="form-control" id="inputText" />
               <div class="input-group-append">
                 <button class="btn btn-primary" type="button" id="submitBtn">
                   <img
@@ -46,13 +40,11 @@
           <ul id="cityList" class="list-group"></ul>
         </div>
 
-        <div class="col-sm-9">
-          <br />
-          <div class="card">
-            <div class="card-body" id="currentCity"></div>
-          </div>
-        </div>
+        <div class="col-sm-9" id="currentCity">
+
       </div>
+
+      <div class="row" id="fiveDay"></div>
     </div>
 
     <!-- script -->
@@ -65,3 +57,5 @@
     <script src="app.js"></script>
   </body>
 </html>
+
+<img src="" alt="" />
