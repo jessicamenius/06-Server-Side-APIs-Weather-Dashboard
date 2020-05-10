@@ -1,3 +1,5 @@
+// MAIN VERSION
+
 $(document).ready(function () {
   // DO NOT CHANGE
   var inputText = "";
@@ -39,13 +41,14 @@ $(document).ready(function () {
         dataTye: "json",
       }).then(function (res) {
         console.log(res);
+        var dateUnix = res.current.dt;
 
         $("#currentCity").append(
           `<div class="card">
             <div class="card-body">
             <h4>${cityName} <img src="http://openweathermap.org/img/wn/${
             res.current.weather[0].icon
-          }@2x.png" alt="Weather Icon"></h4>
+          }@2x.png" alt="Weather Icon"></>
             <p>Temperature: ${(
               (res.current.temp - 273.15) * (9 / 5) +
               32
@@ -57,15 +60,38 @@ $(document).ready(function () {
           </div>`
         );
 
-        // $("#fiveDay").append(
+        // function convertUnix() {
+        //   var humanDate = new Date(dateUnix * 1000);
+        //   document.write(
+        //     myDate.toGMTString() + "<br>" + myDate.toLocaleString()
+        //   );
+        //   console.log(humanDate);
+        // }
+        // convertUnix();
 
-        // )
+        for (var i = 0; i < 6; i++) {
+          $("#fiveDay").append(
+            `<h4>Five Day Forecast: </h4>
+            <h4>${cityName}</h4>
+            <div class="card">
+            <div class="card-body">
+            <p>Date</p>
+            <img src="http://openweathermap.org/img/wn/${
+              res.current.weather[i].icon
+            }@2x.png" alt="Weather Icon"></>
+            <p>Temperature: ${(
+              (res.current.temp - 273.15) * (9 / 5) +
+              32
+            ).toFixed(0)}°F</p>
+          <p>Humidity: ${res.current.humidity}%</p>
+          </div>
+        </div>`
+          );
+        }
       });
       // DO NOT CHANGE
     });
   });
-
-  // $("fiveDay").append();
 });
 
 // $(document).on("click", ".btn", function () {

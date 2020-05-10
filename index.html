@@ -1,3 +1,5 @@
+<!-- MAIN VERSION -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,8 +12,9 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="style.css" />
-    <title>Homework 06 Server-Side APIs: Weather Dashboard</title>
+    <title>MAIN Homework 06 Server-Side APIs: Weather Dashboard</title>
   </head>
+
   <body>
     <header class="text-center bg-dark text-light round-0">
       <h1>Weather Dashboard</h1>
@@ -20,23 +23,31 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-sm-4" id = "left-column"><br>
+        <div class="col-sm-4" id="left-column">
+          <br />
           <h5 class="city-header">Search for a City:</h5>
+
           <form>
             <div class="input-group mb-3">
-              <input type="text" class="form-control" id="inputText" placeholder="Search City by Name" />
-              <div class="input-group-append">
+              <input
+                type="text"
+                class="form-control"
+                id="inputText"
+                placeholder="Search City by Name"
+              />
               <button class="btn btn-primary" type="submit" id="submitBtn">
                 <img src="Assets/iconmonstr-magnifier-1-16.png" alt="Search" />
               </button>
             </div>
           </form>
+          <br />
+          <ul id="cityList" class="list-group"></ul>
         </div>
-        <ul id="cityList" class="list-group"></ul>
-      </div>
-        <div class="col-sm-8" id="right-column">
+
+        <div class="col-sm-8">
           <div class="card" id="currentCity"></div>
           <div class="card" id="fiveDay"></div>
+        </div>
       </div>
     </div>
 
@@ -50,5 +61,3 @@
     <script src="app.js"></script>
   </body>
 </html>
-
-<img src="" alt="" />

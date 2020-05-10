@@ -1,3 +1,5 @@
+/* MAIN  CSS */
+
 body {
   font-family: sans-serif;
 }
@@ -26,4 +28,8 @@ ul {
 
 #right-column {
   background-color: white;
+}
+
+.card {
+  border: none;
 }
