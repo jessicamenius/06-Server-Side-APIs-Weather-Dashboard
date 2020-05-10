@@ -10,29 +10,29 @@ $(document).ready(function () {
     e.preventDefault();
     inputText = $("#inputText").val();
     $("#inputText").val("");
-    // console.log(inputText);
+    console.log(inputText);
     $("#currentCity").html("");
     $("#fiveDay").html("");
-
-    var storeCity = JSON.parse(localStorage.getItem("storeCity")) || [];
-    storeCity.push(inputText);
-
-    localStorage.setItem("storeCity", JSON.stringify(storeCity));
 
     $.ajax({
       type: "GET",
       url: `https://api.openweathermap.org/data/2.5/weather?q=${inputText}&appid=${appId}`,
       dataType: "json",
     }).then(function (res) {
-      // console.log(res);
+      console.log(res);
       var cityName = res.name;
+
+      var storeCity = JSON.parse(localStorage.getItem("storeCity")) || [];
+      storeCity.push(inputText);
+
+      window.localStorage.setItem("storeCity", JSON.stringify(storeCity));
 
       if (storeCity != null) {
         `<li class="btn list-group-item"
         ) ">${cityName}</li>`;
       }
 
-      $("#cityList").append(
+      $("#cityList").prepend(
         `<li class="list-group-item previousSearch") ">${cityName}</li>`
       );
 
@@ -42,6 +42,7 @@ $(document).ready(function () {
         dataTye: "json",
       }).then(function (res) {
         console.log(res);
+        var uvIndex = res.current.uvi;
 
         $("#currentCity").append(
           `<div class="card-body">
@@ -54,14 +55,27 @@ $(document).ready(function () {
             ).toFixed(0)}°F</p>
             <p>Humidity: ${res.current.humidity}%</p>
             <p>Wind speed: ${res.current.wind_speed} MPH</p>
-            <p>UV index: ${res.current.uvi}</p>
-            </div>
-          </div>`
+            <p>UV index: ${uvIndex}</p>
+          </div>
+          <br>
+          <h4>Five Day Forecast:<h4>`
         );
+
+        if (uvIndex < 2) {
+          $(".uvIndexColor").attr("style", "background.-color: green");
+        }
+        if (uvIndex < 6) {
+          $(".uvIndexColor").attr("style", "background-color: yellow");
+        }
+        if (uvIndex < 8) {
+          $(".uvIndexColor").attr("style", "background-color: orange");
+        } else {
+          $(".uvIndexColor").attr("style", "background-color: red");
+        }
 
         for (var i = 1; i < 6; i++) {
           $("#fiveDay").append(
-            `<div card ml-3 mb-3" style="max-width: 9rem;">
+            `<div class = card">
             <div class="card-body bg-primary text-light">
             <p>${new Date(res.daily[i].dt * 1000).toLocaleDateString()}
             <div><img src="http://openweathermap.org/img/wn/${
