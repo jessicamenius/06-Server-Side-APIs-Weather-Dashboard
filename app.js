@@ -21,7 +21,11 @@ $(document).ready(function () {
       localStorage.setItem("city", JSON.stringify({ city: cityName }));
       renderCity();
 
-      $("#cityList").append(`<li class="btn list-group-item">${cityName}</li>`);
+      $("#cityList").append(
+        `<li class="btn list-group-item" data-id= ${storeData.indexOf(
+          storeData[i]
+        )} ">${cityName}</li>`
+      );
 
       $.ajax({
         type: "GET",
