@@ -59,7 +59,7 @@ $(document).ready(function () {
           </div>`
         );
 
-        for (var i = 0; i < 6; i++) {
+        for (var i = 1; i < 6; i++) {
           $("#fiveDay").append(
             `<div card ml-3 mb-3" style="max-width: 9rem;">
             <div class="card-body bg-primary text-light">
@@ -123,7 +123,7 @@ $(document).on("click", ".previousSearch", function () {
       </div>`
       );
 
-      for (var i = 0; i < 6; i++) {
+      for (var i = 1; i < 6; i++) {
         $("#fiveDay").append(
           `<div card ml-3 mb-3" style="max-width: 9rem;">
           <div class="card-body bg-primary text-light">

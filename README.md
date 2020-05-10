@@ -1,3 +1,5 @@
+MAIN READ ME
+
 # 06 Server-Side APIs: Weather Dashboard
 
 Developers are often tasked with retrieving data from another application's API and using it in the context of their own. Third-party APIs allow developers to access their data and functionality by making requests with specific parameters to a URL. Your challenge is to build a weather dashboard that will run in the browser and feature dynamically updated HTML and CSS.
@@ -21,10 +23,13 @@ GIVEN a weather dashboard with form inputs
 
 WHEN I search for a city
 THEN I am presented with current and future conditions for that city and that city is added to the search history
-    *API key with information from
+    * API key with information from: OpenWeather API
+        * Get city with Current Weather Data, pull lat and lon for OneCall API
+        * Use OneCall API for remaining current/future conditions
 
 WHEN I view current weather conditions for that city
 THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
+    * Create list and append to HTML via jquery
 
 
 WHEN I view the UV index
