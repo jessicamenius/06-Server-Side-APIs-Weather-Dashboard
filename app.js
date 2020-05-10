@@ -11,8 +11,7 @@ $(document).ready(function () {
     inputText = $("#inputText").val();
     $("#inputText").val("");
     console.log(inputText);
-    $("#currentCity").html("");
-    $("#fiveDay").html("");
+    $("#weatherDisplay").html("");
 
     $.ajax({
       type: "GET",
@@ -44,7 +43,7 @@ $(document).ready(function () {
         console.log(res);
         var uvIndex = res.current.uvi;
 
-        $("#currentCity").append(
+        $("#weatherDisplay").prepend(
           `<div class="card-body">
             <h4>${cityName} <img src="http://openweathermap.org/img/wn/${
             res.current.weather[0].icon
@@ -55,10 +54,11 @@ $(document).ready(function () {
             ).toFixed(0)}°F</p>
             <p>Humidity: ${res.current.humidity}%</p>
             <p>Wind speed: ${res.current.wind_speed} MPH</p>
-            <p>UV index: ${uvIndex}</p>
+            <p class="uvIndexColor">UV index: ${uvIndex}</p>
           </div>
           <br>
-          <h4>Five Day Forecast:<h4>`
+          <h4>Five Day Forecast:<h4>
+          <div class="row" id="fiveDay">`
         );
 
         if (uvIndex < 2) {
@@ -74,24 +74,26 @@ $(document).ready(function () {
         }
 
         for (var i = 1; i < 6; i++) {
-          $("#fiveDay").append(
-            `<div class = card">
+          $("#weatherDisplay").append(
+            `<div class="card">
             <div class="card-body bg-primary text-light">
-            <p>${new Date(res.daily[i].dt * 1000).toLocaleDateString()}
-            <div><img src="http://openweathermap.org/img/wn/${
+            <p class="card-text">${new Date(
+              res.daily[i].dt * 1000
+            ).toLocaleDateString()}</p>
+            <p><img src="http://openweathermap.org/img/wn/${
               res.daily[i].weather[0].icon
-            }@2x.png"/></div>
-            <p>Daily high temp:
+            }@2x.png"/></p>
+            <p class="card-text">Daily high temp:
             ${((res.daily[i].temp.max - 273.15) * (9 / 5) + 32).toFixed(
               0
             )}°F</p>
-            <p>Daily low temp:
+            <p class="card-text">Daily low temp:
             ${((res.daily[i].temp.min - 273.15) * (9 / 5) + 32).toFixed(
               0
             )}°F</p>
-          <p>Humidity: ${res.daily[i].humidity}%</p>
+          <p class="card-text">Humidity: ${res.daily[i].humidity}%</p>
           </div>
-        </div>`
+          </div>`
           );
         }
       });
@@ -100,9 +102,7 @@ $(document).ready(function () {
 });
 
 $(document).on("click", ".previousSearch", function () {
-  $("#currentCity").html("");
-  $("#fiveDay").html("");
-
+  $("#weatherDisplay").html("");
   var text = $(this).text();
   console.log(this);
   $.ajax({
@@ -121,7 +121,7 @@ $(document).on("click", ".previousSearch", function () {
     }).then(function (res) {
       console.log(res);
 
-      $("#currentCity").append(
+      $("#weatherDisplay").append(
         `<div class="card">
         <div class="card-body">
         <h4>${cityName} <img src="http://openweathermap.org/img/wn/${
@@ -138,20 +138,26 @@ $(document).on("click", ".previousSearch", function () {
       );
 
       for (var i = 1; i < 6; i++) {
-        $("#fiveDay").append(
-          `<div card ml-3 mb-3" style="max-width: 9rem;">
-          <div class="card-body bg-primary text-light">
-          <p>${new Date(res.daily[i].dt * 1000).toLocaleDateString()}
-          <div><img src="http://openweathermap.org/img/wn/${
-            res.daily[i].weather[0].icon
-          }@2x.png"/></div>
-          <p>Daily high temp:
-          ${((res.daily[i].temp.max - 273.15) * (9 / 5) + 32).toFixed(0)}°F</p>
-          <p>Daily low temp:
-          ${((res.daily[i].temp.min - 273.15) * (9 / 5) + 32).toFixed(0)}°F</p>
-        <p>Humidity: ${res.daily[i].humidity}%</p>
-        </div>
-      </div>`
+        $("#weatherDisplay").append(
+          `<div class="card">
+            <div class="card-body bg-primary text-light">
+            <p class="card-text">${new Date(
+              res.daily[i].dt * 1000
+            ).toLocaleDateString()}</p>
+            <p><img src="http://openweathermap.org/img/wn/${
+              res.daily[i].weather[0].icon
+            }@2x.png"/></p>
+            <p class="card-text">Daily high temp:
+            ${((res.daily[i].temp.max - 273.15) * (9 / 5) + 32).toFixed(
+              0
+            )}°F</p>
+            <p class="card-text">Daily low temp:
+            ${((res.daily[i].temp.min - 273.15) * (9 / 5) + 32).toFixed(
+              0
+            )}°F</p>
+          <p class="card-text">Humidity: ${res.daily[i].humidity}%</p>
+          </div>
+          </div>`
         );
       }
     });

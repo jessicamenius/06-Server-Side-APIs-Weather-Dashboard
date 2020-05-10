@@ -27,14 +27,21 @@ ul {
   background-color: whitesmoke;
 }
 
-#right-column {
-  background-color: white;
-}
-
 .card {
   border: none;
 }
 
 .card-body {
   border: 1px solid #e5e5e5;
+}
+
+.card-text {
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.col-sm-8 right-panel {
+  padding-right: 10px;
 }
