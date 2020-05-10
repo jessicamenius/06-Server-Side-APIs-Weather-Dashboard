@@ -11,7 +11,7 @@ $(document).ready(function () {
     e.preventDefault();
     inputText = $("#inputText").val();
     $("#inputText").val("");
-    console.log(inputText);
+    // console.log(inputText);
 
     var storeCity = JSON.parse(localStorage.getItem("storeCity")) || [];
     storeCity.push(inputText);
@@ -23,7 +23,7 @@ $(document).ready(function () {
       url: `https://api.openweathermap.org/data/2.5/weather?q=${inputText}&appid=${appId}`,
       dataType: "json",
     }).then(function (res) {
-      console.log(res);
+      // console.log(res);
       var cityName = res.name;
 
       if (storeCity != null) {
@@ -41,49 +41,40 @@ $(document).ready(function () {
         dataTye: "json",
       }).then(function (res) {
         console.log(res);
-        var dateUnix = res.current.dt;
 
         $("#currentCity").append(
-          `<div class="card">
-            <div class="card-body">
+          `<div class="card-body">
             <h4>${cityName} <img src="http://openweathermap.org/img/wn/${
             res.current.weather[0].icon
           }@2x.png" alt="Weather Icon"></>
-            <p>Temperature: ${(
+            <p>Current temp: ${(
               (res.current.temp - 273.15) * (9 / 5) +
               32
             ).toFixed(0)}°F</p>
             <p>Humidity: ${res.current.humidity}%</p>
-            <p>Wind Speed: ${res.current.wind_speed} MPH</p>
-            <p>UV Index: ${res.current.uvi}</p>
+            <p>Wind speed: ${res.current.wind_speed} MPH</p>
+            <p>UV index: ${res.current.uvi}</p>
             </div>
           </div>`
         );
 
-        // function convertUnix() {
-        //   var humanDate = new Date(dateUnix * 1000);
-        //   document.write(
-        //     myDate.toGMTString() + "<br>" + myDate.toLocaleString()
-        //   );
-        //   console.log(humanDate);
-        // }
-        // convertUnix();
-
         for (var i = 0; i < 6; i++) {
           $("#fiveDay").append(
-            `<h4>Five Day Forecast: </h4>
-            <h4>${cityName}</h4>
-            <div class="card">
-            <div class="card-body">
-            <p>Date</p>
-            <img src="http://openweathermap.org/img/wn/${
-              res.current.weather[i].icon
-            }@2x.png" alt="Weather Icon"></>
-            <p>Temperature: ${(
-              (res.current.temp - 273.15) * (9 / 5) +
-              32
-            ).toFixed(0)}°F</p>
-          <p>Humidity: ${res.current.humidity}%</p>
+            `<div card ml-3 mb-3" style="max-width: 9rem;">
+            <div class="card-body bg-primary text-light">
+            <p>${new Date(res.daily[i].dt * 1000).toLocaleDateString()}
+            <div><img src="http://openweathermap.org/img/wn/${
+              res.daily[i].weather[0].icon
+            }@2x.png"/></div>
+            <p>Daily high temp:
+            ${((res.daily[i].temp.max - 273.15) * (9 / 5) + 32).toFixed(
+              0
+            )}°F</p>
+            <p>Daily low temp:
+            ${((res.daily[i].temp.min - 273.15) * (9 / 5) + 32).toFixed(
+              0
+            )}°F</p>
+          <p>Humidity: ${res.daily[i].humidity}%</p>
           </div>
         </div>`
           );

@@ -33,3 +33,7 @@ ul {
 .card {
   border: none;
 }
+
+.card-body {
+  border: 1px solid #e5e5e5;
+}
