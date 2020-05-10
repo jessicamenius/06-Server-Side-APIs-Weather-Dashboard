@@ -45,7 +45,7 @@ $(document).ready(function () {
             <div class="card-body">
             <h4>${cityName} <img src="http://openweathermap.org/img/wn/${
             res.current.weather[0].icon
-          }@2x.png" alt=""></h4>
+          }@2x.png" alt="Weather Icon"></h4>
             <p>Temperature: ${(
               (res.current.temp - 273.15) * (9 / 5) +
               32
@@ -56,6 +56,10 @@ $(document).ready(function () {
             </div>
           </div>`
         );
+
+        // $("#fiveDay").append(
+
+        // )
       });
       // DO NOT CHANGE
     });

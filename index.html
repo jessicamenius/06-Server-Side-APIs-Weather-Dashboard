@@ -20,10 +20,8 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-4" id = "left-column"><br>
           <h5 class="city-header">Search for a City:</h5>
-          <br />
-
           <form>
             <div class="input-group mb-3">
               <input type="text" class="form-control" id="inputText" placeholder="Search City by Name" />
@@ -34,25 +32,12 @@
             </div>
           </form>
         </div>
-
-        <ul id="cityList" class="list-group">
-
-        </ul>
+        <ul id="cityList" class="list-group"></ul>
       </div>
-
-      <div class="col-sm-8" id="currentCity"></div>
-      <!-- col-sm-4 should for 3 columns, pic to be inlcuded? -->
-
-      <div class="row">
-        <div class="col-sm-4"></div>
-        <div class="col-sm-8" id="fiveDay">
-          <div class="card">
-            <div class="card-body">
-            </div>
-          </div>
-        </div>
+        <div class="col-sm-8" id="right-column">
+          <div class="card" id="currentCity"></div>
+          <div class="card" id="fiveDay"></div>
       </div>
-
     </div>
 
     <!-- script -->

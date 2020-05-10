@@ -11,14 +11,19 @@ header {
   padding-top: 10px;
 }
 
-.col-sm-4 {
-  background-color: whitesmoke;
-}
-
 .city-header {
   padding-top: 5px;
 }
 
 ul {
   padding-bottom: 10px;
+}
+
+#left-column {
+  height: 92vh;
+  background-color: whitesmoke;
+}
+
+#right-column {
+  background-color: white;
 }
