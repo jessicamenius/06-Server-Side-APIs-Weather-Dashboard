@@ -20,13 +20,13 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-4">
           <h5 class="city-header">Search for a City:</h5>
           <br />
 
           <form>
             <div class="input-group mb-3">
-              <input type="text" class="form-control" id="inputText" />
+              <input type="text" class="form-control" id="inputText" placeholder="Search City by Name" />
               <div class="input-group-append">
               <button class="btn btn-primary" type="submit" id="submitBtn">
                 <img src="Assets/iconmonstr-magnifier-1-16.png" alt="Search" />
@@ -35,14 +35,26 @@
           </form>
         </div>
 
-        <ul id="cityList" class="list-group"></ul>
+        <ul id="cityList" class="list-group">
+
+        </ul>
       </div>
 
-      <div class="col-sm-9" id="currentCity"></div>
+      <div class="col-sm-8" id="currentCity"></div>
 
-      <div class="row" id="fiveDay">
-        <div class="card"></div>
-      </div>
+      <!-- <div class="row" id="fiveDay">
+        <div class="card">
+          <div class="card">
+            <div class="card-body">
+            <h4>cityName</h4>
+            <p>Temperature: °F</p>
+            <p>Humidity: %</p>
+            <p>Wind Speed:  MPH</p>
+            <p>UV Index: </p>
+            </div>
+          </div>
+        </div>
+      </div> -->
     </div>
 
     <!-- script -->
