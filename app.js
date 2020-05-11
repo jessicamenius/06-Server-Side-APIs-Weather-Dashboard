@@ -13,6 +13,11 @@ $(document).ready(function () {
     console.log(inputText);
     $("#weatherDisplay").html("");
 
+    var storeCity = JSON.parse(localStorage.getItem("storeCity")) || [];
+      storeCity.push(inputText);
+      window.localStorage.setItem("storeCity", JSON.stringify(storeCity));
+
+
     $.ajax({
       type: "GET",
       url: `https://api.openweathermap.org/data/2.5/weather?q=${inputText}&appid=${appId}`,
@@ -21,12 +26,7 @@ $(document).ready(function () {
       console.log(res);
       var cityName = res.name;
 
-      var storeCity = JSON.parse(localStorage.getItem("storeCity")) || [];
-      storeCity.push(inputText);
-
-      window.localStorage.setItem("storeCity", JSON.stringify(storeCity));
-
-      if (storeCity != null) {
+            if (storeCity != null) {
         `<li class="btn list-group-item"
         ) ">${cityName}</li>`;
       }
@@ -42,6 +42,7 @@ $(document).ready(function () {
       }).then(function (res) {
         console.log(res);
         var uvIndex = res.current.uvi;
+        $("#weatherDisplay").html("");
 
         $("#weatherDisplay").prepend(
           `<div class="card-body">
@@ -74,8 +75,8 @@ $(document).ready(function () {
         }
 
         for (var i = 1; i < 6; i++) {
-          $("#weatherDisplay").append(
-            `<div class="card">
+          $("#fiveDay").append(
+            `<div class="card card ml-3 mb-3">
             <div class="card-body bg-primary text-light">
             <p class="card-text">${new Date(
               res.daily[i].dt * 1000
@@ -104,14 +105,13 @@ $(document).ready(function () {
 $(document).on("click", ".previousSearch", function () {
   $("#weatherDisplay").html("");
   var text = $(this).text();
-  console.log(this);
+  console.log(text);
   $.ajax({
     type: "GET",
     url: `https://api.openweathermap.org/data/2.5/weather?q=${text}&appid=a50d1656c773eed4f6ac56768b7f8ba2`,
     dataType: "json",
   }).then(function (res) {
     console.log(res);
-
     var cityName = res.name;
 
     $.ajax({
@@ -121,8 +121,10 @@ $(document).on("click", ".previousSearch", function () {
     }).then(function (res) {
       console.log(res);
 
+      var uvIndex = res.current.uvi;
+
       $("#weatherDisplay").append(
-        `<div class="card">
+        `<div class="card card ml-3 mb-3">
         <div class="card-body">
         <h4>${cityName} <img src="http://openweathermap.org/img/wn/${
           res.current.weather[0].icon
@@ -132,13 +134,26 @@ $(document).on("click", ".previousSearch", function () {
         )} °F</p>
         <p>Humidity: ${res.current.humidity}%</p>
         <p>Wind Speed: ${res.current.wind_speed} MPH</p>
-        <p>UV Index: ${res.current.uvi}</p>
-        </div>
-      </div>`
+        <p class = "uvIndexColor">UV Index: ${uvIndex}</p>
+        <br>
+        <h4>Five Day Forecast:<h4>
+        <div class="row" id="fiveDay">`
       );
 
+      if (uvIndex < 2) {
+        $(".uvIndexColor").attr("style", "background.-color: green");
+      }
+      if (uvIndex < 6) {
+        $(".uvIndexColor").attr("style", "background-color: yellow");
+      }
+      if (uvIndex < 8) {
+        $(".uvIndexColor").attr("style", "background-color: orange");
+      } else {
+        $(".uvIndexColor").attr("style", "background-color: red");
+      }
+
       for (var i = 1; i < 6; i++) {
-        $("#weatherDisplay").append(
+        $("#fiveDay").append(
           `<div class="card">
             <div class="card-body bg-primary text-light">
             <p class="card-text">${new Date(
