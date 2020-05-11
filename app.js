@@ -13,11 +13,6 @@ $(document).ready(function () {
     console.log(inputText);
     $("#weatherDisplay").html("");
 
-    var storeCity = JSON.parse(localStorage.getItem("storeCity")) || [];
-      storeCity.push(inputText);
-      window.localStorage.setItem("storeCity", JSON.stringify(storeCity));
-
-
     $.ajax({
       type: "GET",
       url: `https://api.openweathermap.org/data/2.5/weather?q=${inputText}&appid=${appId}`,
@@ -26,7 +21,12 @@ $(document).ready(function () {
       console.log(res);
       var cityName = res.name;
 
-            if (storeCity != null) {
+      var storeCity = JSON.parse(localStorage.getItem("storeCity")) || [];
+      storeCity.push(inputText);
+
+      window.localStorage.setItem("storeCity", JSON.stringify(storeCity));
+
+      if (storeCity != null) {
         `<li class="btn list-group-item"
         ) ">${cityName}</li>`;
       }
@@ -105,7 +105,7 @@ $(document).ready(function () {
 $(document).on("click", ".previousSearch", function () {
   $("#weatherDisplay").html("");
   var text = $(this).text();
-  console.log(text);
+  console.log(this);
   $.ajax({
     type: "GET",
     url: `https://api.openweathermap.org/data/2.5/weather?q=${text}&appid=a50d1656c773eed4f6ac56768b7f8ba2`,
@@ -120,8 +120,7 @@ $(document).on("click", ".previousSearch", function () {
       dataTye: "json",
     }).then(function (res) {
       console.log(res);
-
-      var uvIndex = res.current.uvi;
+      var uvIndex = res.current.uvi
 
       $("#weatherDisplay").append(
         `<div class="card card ml-3 mb-3">
