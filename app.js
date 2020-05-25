@@ -59,7 +59,7 @@ $(document).ready(function () {
         $("#weatherDisplay").append(
           `<div class="card card ml-3 mb-3">
           <div class="card-body">
-          <h4>${cityName} <img src="http://openweathermap.org/img/wn/${
+          <h4>${cityName} <img src="https://openweathermap.org/img/wn/${
             res.current.weather[0].icon
           }@2x.png" alt=""></h4>
           <p>Temperature: ${(
@@ -93,7 +93,7 @@ $(document).ready(function () {
               <p class="card-text">${new Date(
                 res.daily[i].dt * 1000
               ).toLocaleDateString()}</p>
-              <p><img src="http://openweathermap.org/img/wn/${
+              <p><img src="https://openweathermap.org/img/wn/${
                 res.daily[i].weather[0].icon
               }@2x.png"/></p>
               <p class="card-text">Daily high temp:
@@ -139,7 +139,7 @@ $(document).ready(function () {
 
     //     $("#weatherDisplay").prepend(
     //       `<div class="card-body">
-    //         <h4>${cityName} <img src="http://openweathermap.org/img/wn/${
+    //         <h4>${cityName} <img src="https://openweathermap.org/img/wn/${
     //         res.current.weather[0].icon
     //       }@2x.png" alt="Weather Icon"></>
     //         <p>Current temp: ${(
@@ -174,7 +174,7 @@ $(document).ready(function () {
     //         <p class="card-text">${new Date(
     //           res.daily[i].dt * 1000
     //         ).toLocaleDateString()}</p>
-    //         <p><img src="http://openweathermap.org/img/wn/${
+    //         <p><img src="https://openweathermap.org/img/wn/${
     //           res.daily[i].weather[0].icon
     //         }@2x.png"/></p>
     //         <p class="card-text">Daily high temp:
